@@ -1,0 +1,37 @@
+use std::io;
+
+fn celsius_to_fahrenheit(celsius: f64) -> f64 {
+    (celsius * 9.0 / 5.0) + 32.0
+}
+
+fn fahrenheit_to_celsius(fahrenheit: f64) -> f64 {
+    (fahrenheit - 32.0) * 5.0 / 9.0
+}
+
+fn main() {
+    println!("Temperature Converter");
+    println!("Enter 'C' to convert from Celsius to Fahrenheit or 'F' to convert from Fahrenheit to Celsius:");
+
+    let mut choice = String::new();
+    io::stdin().read_line(&mut choice).expect("Failed to read input");
+    let choice = choice.trim().to_uppercase();
+
+    if choice == "C" || choice == "F" {
+        println!("Enter the temperature value:");
+        let mut temp = String::new();
+        io::stdin().read_line(&mut temp).expect("Failed to read input");
+        
+        match temp.trim().parse::<f64>() {
+            Ok(value) => {
+                if choice == "C" {
+                    println!("{:.2}°C is {:.2}°F", value, celsius_to_fahrenheit(value));
+                } else {
+                    println!("{:.2}°F is {:.2}°C", value, fahrenheit_to_celsius(value));
+                }
+            },
+            Err(_) => println!("Invalid temperature input. Please enter a number."),
+        }
+    } else {
+        println!("Invalid choice. Please enter 'C' or 'F'.");
+    }
+}
