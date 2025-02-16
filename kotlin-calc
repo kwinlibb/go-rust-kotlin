@@ -1,0 +1,30 @@
+import java.util.Scanner  // Importing Scanner for user input
+
+fun main() {
+    // Creating a Scanner object to take input from the user
+    val scanner = Scanner(System.`in`)
+
+    // Asking the user to enter the first number
+    print("Enter first number: ")
+    val num1 = scanner.nextDouble()  // Reads a double value from user input
+
+    // Asking the user to enter an operator (+, -, *, /)
+    print("Enter an operator (+, -, *, /): ")
+    val operator = scanner.next()[0]  // Reads the first character of user input
+
+    // Asking the user to enter the second number
+    print("Enter second number: ")
+    val num2 = scanner.nextDouble()  // Reads a double value from user input
+
+    // Using a 'when' expression to perform the chosen operation
+    val result = when (operator) {
+        '+' -> num1 + num2  // Addition
+        '-' -> num1 - num2  // Subtraction
+        '*' -> num1 * num2  // Multiplication
+        '/' -> if (num2 != 0.0) num1 / num2 else "Cannot divide by zero" // Division with zero check
+        else -> "Invalid operator"  // Handles invalid operator input
+    }
+
+    // Displaying the result of the calculation
+    println("Result: $result")
+}
